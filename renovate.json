@@ -1,0 +1,45 @@
+{
+    "baseBranches": ["main"],
+    "configWarningReuseIssue": false,
+    "dependencyDashboard": true,
+    "dependencyDashboardHeader": "- [ ] Sync upstream versions with updated dependencies.",
+    "dependencyDashboardTitle": "Renovate: Upgrade Package Dependencies",
+    "draftPR": false,
+    "enabledManagers": ["regex"],
+    "labels": ["renovate"],
+    "commitMessagePrefix": "",
+    "packageRules": [
+        {
+            "matchDatasources": ["git-tags"]
+          }
+    ],
+    "regexManagers": [
+        {
+            "fileMatch": ["^base/kustomization\\.yaml$"],
+            "matchStrings": [
+              ".+?ref=+(?<currentValue>.+)"
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/big-bang/bigbang.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+        },
+        {
+            "fileMatch": ["^dev/kustomization\\.yaml$"],
+            "matchStrings": [
+              "tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/big-bang/bigbang.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+        },
+        {
+            "fileMatch": ["^dev/configmap\\.yaml$"],
+            "matchStrings": [
+              "git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        }
+    ],
+    "separateMajorMinor": false
+}
