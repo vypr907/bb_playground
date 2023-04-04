@@ -10,8 +10,9 @@
     "commitMessagePrefix": "",
     "packageRules": [
         {
+            "groupName": "Big Bang",
             "matchDatasources": ["git-tags"]
-          }
+        }
     ],
     "regexManagers": [
         {
