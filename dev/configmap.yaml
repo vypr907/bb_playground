@@ -15,7 +15,7 @@ flux:
 logging:
   git:
     repo: https://repo1.dso.mil/big-bang/product/packages/elasticsearch-kibana.git
-    tag: "1.1.0-bb.1"
+    tag: "1.2.0-bb.0"
   values:
     elasticsearch:
       master:
@@ -57,7 +57,7 @@ monitoring:
 fluentbit:
   git:
     repo: https://repo1.dso.mil/big-bang/product/packages/fluentbit.git
-    tag: "0.25.0-bb.1"
+    tag: "0.25.0-bb.2"
   values:
     securityContext:
       privileged: true
@@ -65,7 +65,7 @@ fluentbit:
 gatekeeper:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/policy.git
-    tag: "3.11.0-bb.2"
+    tag: "3.11.0-bb.3"
   values:
     replicas: 1
     controllerManager:
