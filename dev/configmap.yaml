@@ -57,7 +57,7 @@ monitoring:
 fluentbit:
   git:
     repo: https://repo1.dso.mil/big-bang/product/packages/fluentbit.git
-    tag: "0.25.0-bb.2"
+    tag: "0.25.0-bb.3"
   values:
     securityContext:
       privileged: true
