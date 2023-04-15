@@ -26,7 +26,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: environment-repo
-  path: ./dev
+  path: ./package-strategy
   prune: true
   decryption:
     provider: sops
