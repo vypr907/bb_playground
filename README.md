@@ -44,11 +44,21 @@ In addition, the following items are recommended to assist with troubleshooting:
 
 ## Setup
 
-This template supports a multi-environment template for two distinct deployments: `prod` and `dev`.  Additional environments can be added by replicating one of the existing folders.
+This template supports two distinct workflows for staying up-to-date with Big Bang:
+- `package-strategy` represents an environment that prioritizes the fastest path to receiving package updates as they are released from Big Bang development.
+  - This update strategy keeps updates to the environment and Big Bang deployment small (i.e. a single package update at a time)
+  - Allows for critical security patches to reach the environment as quickly as possible
+  - This can be coupled with [renovate](https://docs.renovatebot.com/) (See the renovate section below) to automate the delivery of updates for an environment for each package as updates released.
+  - As a result of updating packages - Updates to Big Bang patch and/or minor releases may not end up modifying the environment. 
+- `umbrella-strategy` represents an environment that receives updates to all Big Bang packages exclusively from new releases of Big Bang. 
+  - This update strategy allows Big Bang development to test the integration of all packages in an end-to-end testing workflow to ensure backwards compatibility and/or any required integration has occurred.
+  - It can deliver updates to many applications simultaneously with built-in dependency management for which updates occur first.
+  - It ensures that any integration that needs to be managed at the Big Bang umbrella layer has occurred before package deployment.
 
-Each environment consists of a Kubernetes manifest containing Flux resources (`bigbang.yaml`), a Kustomization file (`kustomization.yaml`), values to pass to Big Bang (`configmap.yaml`), secrets (`secrets.enc.yaml`), and additional files used to deploy resources.  All of the environments share a `base` folder to allow reusability of values between environments.
+Each strategy consists of a Kubernetes manifest containing Flux resources (`bigbang.yaml`), a Kustomization file (`kustomization.yaml`), values to pass to Big Bang (`configmap.yaml`), secrets (`secrets.enc.yaml`), and additional files used to deploy resources.
 
-> To insure variables (e.g. `${fp}`) are set correctly, execute all of the steps below in the same terminal window.
+We recommend that you adopt a [multi environment workflow](#multi-environment-workflow) based off of one of these strategies. If following this path each environment can share a `base` folder to allow reusability of values between environments.
+
 
 ## Git Repository
 
@@ -62,6 +72,15 @@ cd <your repo>
 
 # Create branch for your changes
 git checkout -b template-demo
+
+# Copy one of the strategy directories into named-environment directories
+cp -r package-stategy/ dev
+# update path - switch to gsed on MacOS
+sed -i 's/package-strategy/dev/g' dev/bigbang.yaml
+
+cp -r umbrella-strategy/ prod
+# update path - switch to gsed on MacOS
+sed -i 's/package-strategy/prod/g' prod/bigbang.yaml
 ```
 
 > It is recommended that you create your own branch so that you can [pull the original repository's `main` branch as a mirror](https://docs.gitlab.com/ee/user/project/repository/repository_mirroring.html) to keep it in sync.
@@ -677,7 +696,11 @@ When you save the file, sops automatically re-encrypts it for all of the keys sp
 
 ## Multi-environment Workflow
 
-In this template, we have a `dev` and `prod` environment.  Your specific situation deployment may have more.  Our intended workflow is:
+In this template, we provide the `package-strategy` and `umbrella-strategy` deployment strategies. These can be used in any combination you see fit to manage multiple environments. Optimally updates are introduced to your environments through quality gates - where you would test updates in a `dev` environment before promoting to a `prod` environment.
+
+In this instance - you can copy the strategy directory you select for each environment and name them accordingly. We will use `dev` and `prod` in this example.
+
+This accomplishes:
 
 - Test changes in the `dev` environment before deploying into `prod`
 - Keep `dev` as close as possible to `prod` by sharing values
@@ -704,3 +727,11 @@ Big Bang `dev` value changes can be made by simply modifying `dev/configmap.yaml
 The same concept applies to `dev` secret changes, with two separate secrets named `common-bb` and `environment-bb` used for values to Big Bang, with the `environment-bb` values taking precedence over the `common-bb` values in Big Bang.
 
 If a new resource must be deployed, for example a TLS cert, you must add a `resources:` section to the `kustomization.yaml` to refer to the new file.  See the base directory for an example.
+
+## Renovate Bot
+
+As documented in Big Bang, optimally the repository that maintains your GitOps state (this template) is being monitored by a tool such as Renovate to provide alerting and automation around updates for Big Bang and packages.
+
+The [Renovate configuration](./renovate.json) in this repository provides an example that will target Repo1 git repositories for both individual packages as well the Big Bang umbrella chart and provide automated merge requests for updates. If following the `package-strategy` for consuming updates, Renovate will open pull/merge-requests on a per-package basis.
+
+The [Renovate Deployment](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/guides/renovate/deployment.md) documentation supports deploying Renovate on a Big Bang cluster that can monitor both this template as well as dependencies in other repositories as a generic capability. 
