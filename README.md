@@ -735,3 +735,8 @@ As documented in Big Bang, optimally the repository that maintains your GitOps s
 The [Renovate configuration](./renovate.json) in this repository provides an example that will target Repo1 git repositories for both individual packages as well the Big Bang umbrella chart and provide automated merge requests for updates. If following the `package-strategy` for consuming updates, Renovate will open pull/merge-requests on a per-package basis.
 
 The [Renovate Deployment](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/guides/renovate/deployment.md) documentation supports deploying Renovate on a Big Bang cluster that can monitor both this template as well as dependencies in other repositories as a generic capability. 
+
+Once an environment directory has been created from a given strategy directory, the strategy directories can be omitted from renovate update by adding an `ignorePaths` option to the `renovate.json`:
+```
+"ignorePaths": ["package-strategy/**", "umbrella-strategy"],
+```
