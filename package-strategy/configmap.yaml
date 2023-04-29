@@ -79,7 +79,7 @@ loki:
 promtail:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/promtail.git
-    tag: "6.10.0-bb.0"
+    tag: "6.10.0-bb.1"
     path: "./chart"
   enabled: true
 
@@ -128,7 +128,7 @@ addons:
   metricsServer:
     git:
       repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/metrics-server.git
-      tag: "3.9.0-bb.0"
+      tag: "3.9.0-bb.1"
       path: "./chart"
     enabled: auto
 
