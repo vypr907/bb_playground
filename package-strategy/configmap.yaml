@@ -18,14 +18,14 @@ kiali:
 istio:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    tag: "1.17.2-bb.0"
+    tag: "1.17.2-bb.1"
     path: "./chart"
   enabled: true
 
 istioOperator:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    tag: "1.17.2-bb.0"
+    tag: "1.17.2-bb.1"
     path: "./chart"
   enabled: true
 
@@ -46,7 +46,7 @@ monitoring:
 loki:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/loki.git
-    tag: "5.0.0-bb.1"
+    tag: "5.0.0-bb.2"
     path: "./chart"
   enabled: true
   strategy: scalable
@@ -79,7 +79,7 @@ loki:
 promtail:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/promtail.git
-    tag: "6.10.0-bb.1"
+    tag: "6.11.0-bb.0"
     path: "./chart"
   enabled: true
 
@@ -95,7 +95,7 @@ kyverno:
 kyvernoPolicies:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno-policies.git
-    tag: "1.1.0-bb.5"
+    tag: "1.1.0-bb.6"
     path: "./chart"
   enabled: true
   # values:
