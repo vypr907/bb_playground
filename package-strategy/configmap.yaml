@@ -8,7 +8,7 @@ domain: bigbang.dev
 #       nodePortBase: 30000
 
 flux:
-  interval: 1m
+  interval: 2m
   rollback:
     cleanupOnFail: false
 
@@ -16,24 +16,12 @@ kiali:
   enabled: false
 
 istio:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    tag: "1.17.2-bb.1"
-    path: "./chart"
   enabled: true
 
 istioOperator:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    tag: "1.17.2-bb.1"
-    path: "./chart"
   enabled: true
 
 monitoring:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/monitoring.git
-    tag: "43.1.2-bb.5"
-    path: "./chart"
   enabled: true
   values:
     prometheus:
@@ -44,10 +32,6 @@ monitoring:
             memory: 1Gi
 
 loki:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/loki.git
-    tag: "5.0.0-bb.3"
-    path: "./chart"
   enabled: true
   strategy: scalable
   values:
@@ -77,26 +61,12 @@ loki:
           memory: 400Mi
 
 promtail:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/promtail.git
-    tag: "6.11.0-bb.0"
-    path: "./chart"
   enabled: true
 
 kyverno:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno.git
-    tag: "2.7.2-bb.0"
-    path: "./chart"
   enabled: true
-  values:
-    replicaCount: 1
 
 kyvernoPolicies:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno-policies.git
-    tag: "1.1.0-bb.6"
-    path: "./chart"
   enabled: true
   # values:
   #   exclude:
@@ -115,10 +85,6 @@ kyvernoPolicies:
   #         - /var/lib/rancher/k3s/storage/pvc-*
 
 neuvector:
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/neuvector.git
-    tag: "2.4.3-bb.0"
-    path: "./chart"
   enabled: true
   values:
     k3s:
@@ -126,10 +92,6 @@ neuvector:
 
 addons:
   metricsServer:
-    git:
-      repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/metrics-server.git
-      tag: "3.9.0-bb.1"
-      path: "./chart"
     enabled: auto
 
   minioOperator:
