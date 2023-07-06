@@ -406,8 +406,8 @@ Big Bang follows a [GitOps](https://www.weave.works/blog/what-is-gitops-really) 
 
    ```shell
    # Flux is used to sync Git with the the cluster configuration
-   # If you are using a different version of Big Bang, make sure to update the `?ref=1.41.0` to the correct tag or branch.
-   kubectl apply -k https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=1.41.0
+   # If you are using a different version of Big Bang, make sure to update the `?ref=2.5.0` to the correct tag or branch.
+   kubectl apply -k https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=2.5.0
 
    # Wait for flux to complete
    kubectl get deploy -o name -n flux-system | xargs -n1 -t kubectl rollout status -n flux-system
@@ -484,7 +484,7 @@ To minimize the risk of an unexpected deployment of a BigBang release, the BigBa
 
   ```yaml
   bases:
-  - https://repo1.dso.mil/platform-one/big-bang/bigbang.git/base/?ref=1.41.0
+  - https://repo1.dso.mil/platform-one/big-bang/bigbang.git/base/?ref=2.5.0
   ```
 
 To update `dev/kustomization.yaml`, you would create a `mergePatch` like the following:
@@ -500,7 +500,7 @@ patchesStrategicMerge:
     interval: 1m
     ref:
       $patch: replace
-      tag: "1.41.0"
+      tag: "2.5.0"
 ```
 
 > This does not update the kustomize base, but it is unusual for that to change.
@@ -509,7 +509,7 @@ Then, commit your change:
 
 ```shell
    git add kustomization.yaml
-   git commit -m "feat(dev): update bigbang to 1.41.0"
+   git commit -m "feat(dev): update bigbang to 2.5.0"
    git push
 ```
 
