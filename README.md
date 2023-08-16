@@ -4,7 +4,7 @@
 
 [[_TOC_]]
 
-This folder contains a template that you can replicate in your own Git repo to get started with Big Bang configuration.  If you are new to Big Bang it is recommended you start with the [Big Bang Quickstart](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/docs/guides/deployment_scenarios/quickstart.md) before attempting customization.
+This folder contains a template that you can replicate in your own Git repo to get started with Big Bang configuration.  If you are new to Big Bang it is recommended you start with the [Big Bang Quickstart](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/guides/deployment-scenarios/quickstart.md) before attempting customization.
 
 The main benefits of this template include:
 
