@@ -288,7 +288,7 @@ cd ../dev/
 > Replace your forked Git repo where it states `replace-with-your-git-repo`.  Replace `replace-with-your-branch` with your branch name (e.g. `template-demo` as created above).
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
    name: environment-repo
@@ -353,7 +353,7 @@ patchesStrategicMerge:
     postRenderers:
       - kustomize:
           patchesStrategicMerge:
-          - apiVersion: source.toolkit.fluxcd.io/v1beta2
+          - apiVersion: source.toolkit.fluxcd.io/v1
             kind: GitRepository
             metadata:
               name: jaeger
@@ -492,7 +492,7 @@ To update `dev/kustomization.yaml`, you would create a `mergePatch` like the fol
 ```yaml
 patchesStrategicMerge:
 - |-
-  apiVersion: source.toolkit.fluxcd.io/v1beta2
+  apiVersion: source.toolkit.fluxcd.io/v1
   kind: GitRepository
   metadata:
     name: bigbang
