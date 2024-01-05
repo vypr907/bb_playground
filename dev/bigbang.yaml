@@ -12,7 +12,7 @@ spec:
   interval: 1m
   url: https://github.com/vypr907/bb_playground.git
   ref:
-    branch: bb_playground
+    branch: test
   secretRef:
     name: private-git
 ---
