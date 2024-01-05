@@ -10,7 +10,7 @@ metadata:
   namespace: bigbang
 spec:
   interval: 1m
-  url: git@github.com/vypr907/bb_playground.git
+  url: https://github.com/vypr907/bb_playground.git
   ref:
     branch: bb_playground
   secretRef:
