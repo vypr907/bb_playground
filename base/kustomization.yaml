@@ -2,7 +2,7 @@
 #   both the bases reference and the GitRepository reference
 bases:
 #- https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base?ref=2.14.0
-- https://github.com/vypr907/bb_playground.git//base
+- https://github.com/vypr907/bb_playground/tree/bb_playground/base
 configMapGenerator:
   - name: common
     behavior: merge
