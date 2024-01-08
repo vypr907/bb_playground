@@ -4,7 +4,7 @@ bases:
 #- https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base?ref=2.14.0
 #- https://github.com/vypr907/bb_playground/tree/bb_playground/base
 # - testing issue with kustomize v5, where it doesn't allow remote repos
-- file:///Dojo/BigBang/template/base
+- file:///Dojo/BigBang/template//base
 configMapGenerator:
   - name: common
     behavior: merge
